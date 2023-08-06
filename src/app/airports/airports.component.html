@@ -3,11 +3,13 @@
   <form class="row" [formGroup]="airportsFrom">
     <div class="form-group col-md-6">
       <label>Departure</label>
-      <input class="form-control" type="text" formControlName="departure"/>
+      <input class="form-control" type="text" formControlName="departure" appCheckAirport appCheckTextBoxSameAs="{{airportsFrom.value.destination}}" (getInfoAirport)="departureInfo = $event" />
+      <span  style="font-size: 12px;" *ngIf="departureInfo">{{departureInfo | jsonAirportInfo}}</span>
     </div>
     <div class="form-group col-md-6">
       <label>Destination</label>
-      <input class="form-control" type="text" formControlName="destination"/>
+      <input class="form-control" type="text" formControlName="destination" appCheckAirport appCheckTextBoxSameAs="{{airportsFrom.value.departure}}" (getInfoAirport)="destinationInfo = $event" />
+      <span style="font-size: 12px;" *ngIf="destinationInfo">{{destinationInfo | jsonAirportInfo}}</span>
     </div>
   </form>
   <div class="m-5 text-center">airportsFrom: {{airportsFrom.value | json}}</div>

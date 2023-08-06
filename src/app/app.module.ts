@@ -7,12 +7,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AirportsComponent } from './airports/airports.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CheckAirportDirective } from './directive/check-airport.directive';
+import { CheckTextBoxSameAsDirective } from './directive/check-text-box-same-as.directive';
+import { JsonAirportInfoPipe } from './pipe/json-airport-info.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     AirportsComponent,
-    HomePageComponent
+    HomePageComponent,
+    CheckAirportDirective,
+    CheckTextBoxSameAsDirective,
+    JsonAirportInfoPipe
   ],
   imports: [
     BrowserModule,
