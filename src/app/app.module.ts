@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CheckAirportDirective } from './directive/check-airport.directive';
 import { CheckTextBoxSameAsDirective } from './directive/check-text-box-same-as.directive';
 import { JsonAirportInfoPipe } from './pipe/json-airport-info.pipe';
+import { DateMomentComponent } from './date-moment/date-moment.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { JsonAirportInfoPipe } from './pipe/json-airport-info.pipe';
     HomePageComponent,
     CheckAirportDirective,
     CheckTextBoxSameAsDirective,
-    JsonAirportInfoPipe
+    JsonAirportInfoPipe,
+    DateMomentComponent
   ],
   imports: [
     BrowserModule,

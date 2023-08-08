@@ -1,5 +1,6 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output } from '@angular/core';
-import { airportsData } from '../data/airportsData';
+import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
+import { mapAirportData, objAirportDate } from '../data/AirportModel';
+
 
 @Directive({
   selector: '[appCheckAirport]'
@@ -22,15 +23,24 @@ export class CheckAirportDirective{
 
 
   checkDuplicateIata(inputValue:any):boolean{
-    for(const icao in airportsData){
-      if(inputValue === ''){
-        return false;
-      }
-      if(airportsData[icao].iata === inputValue.toUpperCase()){
-        this.getInfoAirport.emit(airportsData[icao])
-        return true
-      }
+    // Map
+    if(mapAirportData.get(inputValue.toUpperCase())){
+      this.getInfoAirport.emit(mapAirportData.get(inputValue.toUpperCase()))
+      return true
     }
+
+    // Array
+    // for(const icao in objAirportDate){
+    //   if(inputValue === ''){
+    //     return false;
+    //   }
+    //   if(objAirportDate[icao].iata === inputValue.toUpperCase()){
+    //     this.getInfoAirport.emit(objAirportDate[icao])
+    //     return true
+    //   }
+    // }
+
+    this.getInfoAirport.emit(null)
     return false;
   }
 
