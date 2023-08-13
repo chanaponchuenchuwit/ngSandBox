@@ -23,22 +23,12 @@ export class CheckAirportDirective{
 
 
   checkDuplicateIata(inputValue:any):boolean{
-    // Map
-    if(mapAirportData.get(inputValue.toUpperCase())){
-      this.getInfoAirport.emit(mapAirportData.get(inputValue.toUpperCase()))
+      // Map
+    const airportDate = mapAirportData.get(inputValue.toUpperCase());
+    if(airportDate){
+      this.getInfoAirport.emit(airportDate)
       return true
     }
-
-    // Array
-    // for(const icao in objAirportDate){
-    //   if(inputValue === ''){
-    //     return false;
-    //   }
-    //   if(objAirportDate[icao].iata === inputValue.toUpperCase()){
-    //     this.getInfoAirport.emit(objAirportDate[icao])
-    //     return true
-    //   }
-    // }
 
     this.getInfoAirport.emit(null)
     return false;
