@@ -15,7 +15,7 @@ export class AirportsComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.airportsFrom = this.fb.group({
       departure: ['', [this.isIata()]],
-      destination: ['', [this.isIata()]]
+      destination: ['', [this.isIata(), this.sameAs('departure')]]
     })
   }
 
@@ -42,6 +42,17 @@ export class AirportsComponent implements OnInit {
   isIata():ValidatorFn{
     return (control: AbstractControl): ValidationErrors | null => {
         return mapAirportData.has(control.value.toUpperCase()) ? null : {isIata:{value: control.value}}
+    }
+  }
+
+  sameAs(controlName:string):ValidatorFn{
+    return (control: AbstractControl): ValidationErrors | null => {
+      const controlParent = control.parent?.get(controlName);
+        if(controlParent && control.value !== controlParent.value){
+          return null
+        } else {
+          return {sameAs:{value: true}}
+        }
     }
   }
 }
