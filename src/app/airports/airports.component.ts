@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { mapAirportData } from '../data/AirportModel';
 
 @Component({
   selector: 'app-airports',
@@ -9,11 +10,17 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class AirportsComponent implements OnInit {
   private _departureInfo:any;
   private _destinationInfo:any;
+  airportsFrom: FormGroup;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) {
+    this.airportsFrom = this.fb.group({
+      departure: ['', [this.isIata()]],
+      destination: ['', [this.isIata()]]
+    })
   }
+
+
+  ngOnInit(): void {}
 
   get departureInfo(){
     return this._departureInfo;
@@ -31,10 +38,10 @@ export class AirportsComponent implements OnInit {
     this._destinationInfo = value
   };
 
-  airportsFrom = new FormGroup({
-    departure: new FormControl(['']),
-    destination: new FormControl([''])
-  })
 
-
+  isIata():ValidatorFn{
+    return (control: AbstractControl): ValidationErrors | null => {
+        return mapAirportData.has(control.value.toUpperCase()) ? null : {isIata:{value: control.value}}
+    }
+  }
 }

@@ -14,24 +14,17 @@ export class CheckAirportDirective{
   
   @HostListener('input', ['$event.target.value'])
   onInputChange(inputValue: string) {// Get the value of the input element
-    if (this.checkDuplicateIata(inputValue)) {
-      this.changeBorderTextBox('green');
-    } else {
-      this.changeBorderTextBox('red');
-    }
+    this.checkDuplicateIata(inputValue)
   }
 
-
-  checkDuplicateIata(inputValue:any):boolean{
+  checkDuplicateIata(inputValue:any){
       // Map
-    const airportDate = mapAirportData.get(inputValue.toUpperCase());
-    if(airportDate){
-      this.getInfoAirport.emit(airportDate)
-      return true
+    if(mapAirportData.has(inputValue.toUpperCase())){
+      this.getInfoAirport.emit(mapAirportData.get(inputValue.toUpperCase()))
     }
-
-    this.getInfoAirport.emit(null)
-    return false;
+    else {
+      this.getInfoAirport.emit(null)
+    }
   }
 
   changeBorderTextBox(color:string){

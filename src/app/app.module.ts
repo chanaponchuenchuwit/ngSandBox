@@ -6,9 +6,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AirportsComponent } from './airports/airports.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckAirportDirective } from './directive/check-airport.directive';
-import { CheckTextBoxSameAsDirective } from './directive/check-text-box-same-as.directive';
 import { JsonAirportInfoPipe } from './pipe/json-airport-info.pipe';
 import { DateMomentComponent } from './date-moment/date-moment.component';
 
@@ -18,7 +17,6 @@ import { DateMomentComponent } from './date-moment/date-moment.component';
     AirportsComponent,
     HomePageComponent,
     CheckAirportDirective,
-    CheckTextBoxSameAsDirective,
     JsonAirportInfoPipe,
     DateMomentComponent
   ],
@@ -26,6 +24,7 @@ import { DateMomentComponent } from './date-moment/date-moment.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],

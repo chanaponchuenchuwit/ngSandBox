@@ -3,12 +3,14 @@
   <form class="row" [formGroup]="airportsFrom">
     <div class="form-group col-md-6">
       <label>Departure</label>
-      <input class="form-control" type="text" formControlName="departure" appCheckAirport appCheckTextBoxSameAs="{{airportsFrom.value.destination}}" (getInfoAirport)="departureInfo = $event" />
+      <input class="form-control" [ngClass]="{'border-danger':airportsFrom.controls['departure'].dirty && airportsFrom.controls['departure'].errors}" type="text" formControlName="departure" appCheckAirport (getInfoAirport)="departureInfo = $event" />
+      <span  class="text-danger" *ngIf="airportsFrom.controls['departure'].dirty && airportsFrom.controls['departure'].errors" >{{airportsFrom.controls['departure'].errors | json}}</span>
       <span  style="font-size: 12px;" *ngIf="departureInfo">{{departureInfo | jsonAirportInfo}}</span>
     </div>
     <div class="form-group col-md-6">
       <label>Destination</label>
-      <input class="form-control" type="text" formControlName="destination" appCheckAirport appCheckTextBoxSameAs="{{airportsFrom.value.departure}}" (getInfoAirport)="destinationInfo = $event" />
+      <input class="form-control" [ngClass]="{'border-danger':airportsFrom.controls['destination'].dirty && airportsFrom.controls['destination'].errors}" type="text" formControlName="destination" appCheckAirport (getInfoAirport)="destinationInfo = $event" />
+      <span  class="text-danger" *ngIf="airportsFrom.controls['destination'].dirty && airportsFrom.controls['destination'].errors">{{airportsFrom.controls['destination'].errors | json}}</span>
       <span style="font-size: 12px;" *ngIf="destinationInfo">{{destinationInfo | jsonAirportInfo}}</span>
     </div>
   </form>

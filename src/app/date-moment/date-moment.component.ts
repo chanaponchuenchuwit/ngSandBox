@@ -25,33 +25,13 @@ export class DateMomentComponent implements OnInit {
     this.observableGetDate.subscribe(value => this.date = value);
   }
 
-  getDateFormat(format?:string):string{
-      switch(format){
-        case 'YYYY-MM-DD h:mm:ss':{
-          return moment(this.date).format('YYYY-MM-DD h:mm:ss');
-        }
-        case 'YYYYMMDD h:mm:ss':{
-          return moment(this.date).format('YYYYMMDD h:mm:ss');
-        }
-        case 'YYYY-DDD h:mm:ss':{
-          return moment(this.date).format('YYYY-DDD h:mm:ss');
-        }
-        case 'YYYYDDD h:mm:ss':{
-          return moment(this.date).format('YYYYDDD h:mm:ss');
-        }
-        case 'MM-DD-YY h:mm:ss':{
-          return moment(this.date).format('MM-DD-YY h:mm:ss');
-        }
-        case 'GGGG-W h:mm:ss':{
-          return moment(this.date).format('GGGG-W h:mm:ss');
-        }
-        case 'GGGGW h:mm:ss':{
-          return moment(this.date).format('GGGGW h:mm:ss');
-        }
-        default: {
-          return moment(this.date).format();
-        }
-    }
+  getDate(format?:string):string{
+      if(format){
+        return moment(this.date).format(format);
+      }
+      else{
+        return moment(this.date).format();
+      }
   }
 
   compareDate(date1: Date, date2: Date, granularity:any):string{
